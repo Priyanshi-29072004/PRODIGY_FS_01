@@ -1,34 +1,34 @@
+// src/components/Header.js
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.js";
+import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 
 const Header = () => {
   const { isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
-          User Authication
-        </Typography>
-        <Button color="inherit" component={Link} to="/">
-          Dashboard
-        </Button>
-
-        {!isAuthenticated ? (
-          <Button color="inherit" component={Link} to="/login">
-            Login
+        {/* Show the Dashboard button only if authenticated */}
+        {isAuthenticated ? (
+          <Button color="inherit" component={Link} to="/dashboard">
+            Dashboard
           </Button>
         ) : (
-          <Button color="inherit" onClick={handleLogout}>
+          <Button color="inherit" disabled>
+            Dashboard
+          </Button>
+        )}
+
+        {/* Toggle between Login and Logout based on authentication */}
+        {isAuthenticated ? (
+          <Button color="inherit" onClick={logout}>
             Logout
+          </Button>
+        ) : (
+          <Button color="inherit" component={Link} to="/login">
+            Login
           </Button>
         )}
       </Toolbar>

@@ -3,10 +3,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/Home";
+import Dashboard from "./components/Dashboard"; // Import Dashboard
 import Header from "./components/Header";
-
-// import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute"; // Ensure PrivateRoute is used
 
 function App() {
   return (
@@ -15,12 +14,13 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        {/* Only allow access to Dashboard if the user is authenticated */}
         <Route
-          path="/"
+          path="/dashboard"
           element={
-            // <PrivateRoute>
-            <Home />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
           }
         />
       </Routes>
