@@ -1,3 +1,4 @@
+// src/components/Login.js
 import React, { useState } from "react";
 import {
   Container,
@@ -40,13 +41,17 @@ const Login = () => {
           flexDirection: "column",
           alignItems: "center",
           marginTop: 8,
+          padding: 4,
+          borderRadius: 2,
+          boxShadow: 3,
+          backgroundColor: "#fff",
         }}
       >
         <Typography component="h1" variant="h5">
           Login
         </Typography>
         {error && (
-          <Alert severity="error" sx={{ mt: 2 }}>
+          <Alert severity="error" sx={{ mt: 2, width: "100%" }}>
             <AlertTitle>Error</AlertTitle>
             {error.response?.data?.message ||
               error.message ||
@@ -54,7 +59,12 @@ const Login = () => {
             {/* Safely render error message */}
           </Alert>
         )}
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ mt: 1, width: "100%" }}
+        >
           <TextField
             variant="outlined"
             margin="normal"
@@ -67,6 +77,7 @@ const Login = () => {
             autoFocus
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            sx={{ mb: 2 }}
           />
           <TextField
             variant="outlined"
@@ -80,6 +91,7 @@ const Login = () => {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            sx={{ mb: 2 }}
           />
           <Button
             type="submit"
@@ -94,6 +106,12 @@ const Login = () => {
             Don't have an account?{" "}
             <MuiLink component={Link} to="/register">
               Register
+            </MuiLink>
+          </Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>
+            Forgot your password?{" "}
+            <MuiLink component={Link} to="/forgot-password">
+              Reset it here
             </MuiLink>
           </Typography>
         </Box>

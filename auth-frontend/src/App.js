@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard"; // Import Dashboard
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute"; // Ensure PrivateRoute is used
+import ForgotPassword from "./components/ForgotPassword"; // Import ForgotPassword
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* Only allow access to Dashboard if the user is authenticated */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />{" "}
+        {/* New Route */}
         <Route
           path="/dashboard"
           element={
@@ -23,6 +25,8 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* Add a default route or a 404 page if needed */}
+        <Route path="*" element={<Login />} />
       </Routes>
     </Router>
   );
