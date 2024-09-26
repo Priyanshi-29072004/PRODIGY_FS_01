@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const response = await axios.post("login", { email: username, password });
       login(response.data.access, response.data.refresh);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setError(error); // Capture the entire error object
     }
